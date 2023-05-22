@@ -1,14 +1,67 @@
-// const fs = require('fs/promises')
+const { nanoid } = require("nanoid");
+const fs = require("fs/promises");
+const path = require("path");
 
-const listContacts = async () => {}
+const contactsPath = path.join(__dirname, "/contacts.json");
 
-const getContactById = async (contactId) => {}
+const writeJsonFile = (data) =>
+  fs.writeFile(contactsPath, JSON.stringify(data, null, 2));
 
-const removeContact = async (contactId) => {}
+async function listContacts() {
+  try {
+    const req = await fs.readFile(contactsPath);
+    return JSON.parse(req);
+  } catch (error) {
+    throw new Error("File reading error: " + error.message);
+  }
+}
 
-const addContact = async (body) => {}
+async function getContactById(contactId) {
+  try {
+    const data = await listContacts();
+    return data.find(({ id }) => id === contactId) || null;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
 
-const updateContact = async (contactId, body) => {}
+async function removeContact(contactId) {
+  let data;
+
+  try {
+    data = await listContacts();
+  } catch (error) {
+    throw new Error(error.message);
+  }
+
+  try {
+    const result = data.find(({ id }) => id === contactId) || null;
+    if (result) writeJsonFile(data.filter(({ id }) => id !== result.id));
+    return result;
+  } catch (error) {
+    throw new Error("File writing error " + error);
+  }
+}
+
+async function addContact({ name, email, phone }) {
+  let data;
+
+  try {
+    data = await listContacts();
+  } catch (error) {
+    throw new Error(error);
+  }
+  const newData = [...data, { name, email, phone, id: nanoid() }];
+
+  try {
+    writeJsonFile(newData);
+    return newData;
+  } catch (error) {
+    throw new Error("File writing error " + error.mesage);
+  }
+}
+
+async function updateContact(contactId, { name, email, phone }) {}
 
 module.exports = {
   listContacts,
@@ -16,4 +69,4 @@ module.exports = {
   removeContact,
   addContact,
   updateContact,
-}
+};
