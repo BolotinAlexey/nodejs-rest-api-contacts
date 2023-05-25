@@ -8,60 +8,39 @@ const writeJsonFile = (data) =>
   fs.writeFile(contactsPath, JSON.stringify(data, null, 2));
 
 async function listContacts() {
-  try {
-    const req = await fs.readFile(contactsPath);
-    return JSON.parse(req);
-  } catch (error) {
-    throw new Error("File reading error: " + error.message);
-  }
+  const req = await fs.readFile(contactsPath);
+  return JSON.parse(req);
 }
 
 async function getContactById(contactId) {
-  try {
-    const data = await listContacts();
-    return data.find(({ id }) => id === contactId) || null;
-  } catch (error) {
-    throw new Error(error.message);
-  }
+  const data = await listContacts();
+  return data.find(({ id }) => id === contactId) || null;
 }
 
 async function removeContact(contactId) {
-  let data;
+  const data = await listContacts();
 
-  try {
-    data = await listContacts();
-  } catch (error) {
-    throw new Error(error.message);
-  }
-
-  try {
-    const result = data.find(({ id }) => id === contactId) || null;
-    if (result) writeJsonFile(data.filter(({ id }) => id !== result.id));
-    return result;
-  } catch (error) {
-    throw new Error("File writing error " + error);
-  }
+  const result = data.find(({ id }) => id === contactId) || null;
+  if (result) writeJsonFile(data.filter(({ id }) => id !== result.id));
+  return result;
 }
 
 async function addContact({ name, email, phone }) {
-  let data;
-
-  try {
-    data = await listContacts();
-  } catch (error) {
-    throw new Error(error);
-  }
+  const data = await listContacts();
   const newData = [...data, { name, email, phone, id: nanoid() }];
 
-  try {
-    writeJsonFile(newData);
-    return newData;
-  } catch (error) {
-    throw new Error("File writing error " + error.mesage);
-  }
+  writeJsonFile(newData);
+  return newData;
 }
 
-async function updateContact(contactId, { name, email, phone }) {}
+async function updateContact(contactId, obj) {
+  const data = await listContacts();
+  const index = data.indexOf(({ id }) => id === contactId);
+  if (index === -1) return null;
+  data[index] = { contactId, ...obj };
+  writeJsonFile(data);
+  return data[index];
+}
 
 module.exports = {
   listContacts,
