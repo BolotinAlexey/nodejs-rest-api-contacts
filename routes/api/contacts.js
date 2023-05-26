@@ -25,7 +25,7 @@ router.get("/:contactId", async (req, res, next) => {
     const { contactId } = req.params;
     const result = await api.getContactById(contactId);
     if (!result)
-      throw new HttpError(404, `Contact with id=${contactId} don't find`);
+      throw new HttpError(404, `Contact with id="${contactId}" don't find`);
     res.status(201).json(result);
   } catch (error) {
     next(error);
@@ -37,14 +37,22 @@ router.post("/", async (req, res, next) => {
     const { error } = addSchema.validate(req.body);
     if (error) throw new HttpError(400, error.message);
     const result = await api.addContact(req.body);
-    res.status(201).json("Added" + result);
+    res.status(201).json(result);
   } catch (error) {
     next(error);
   }
 });
 
 router.delete("/:contactId", async (req, res, next) => {
-  res.json({ message: "template message" });
+  try {
+    const { contactId } = req.params;
+    const result = await api.removeContact(contactId);
+    if (!result)
+      throw new HttpError(404, `Contact with id="${contactId}" don't find`);
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.put("/:contactId", async (req, res, next) => {
@@ -54,7 +62,7 @@ router.put("/:contactId", async (req, res, next) => {
     const { contactId } = req.params;
     const result = await api.updateContact(contactId, req.body);
     if (!result) throw new HttpError(404, "Not found");
-    res.status(201).json("Updated" + result);
+    res.status(201).json(result);
   } catch (error) {
     next(error);
   }
