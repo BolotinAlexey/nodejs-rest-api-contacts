@@ -1,14 +1,11 @@
 const api = require("../models/contacts");
+const { tryCatchDecorator } = require("../decorators");
 
-const getContactsCtrl = async (req, res, next) => {
-  try {
-    const data = await api.listContacts();
-    res.json(data);
-  } catch (error) {
-    next(error);
-  }
+const getContactsCtrl = async (req, res) => {
+  const data = await api.listContacts();
+  res.json(data);
 };
 
 module.exports = {
-  getContactsCtrl,
+  getContactsCtrl: tryCatchDecorator(getContactsCtrl),
 };

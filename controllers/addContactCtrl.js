@@ -1,6 +1,7 @@
 const api = require("../models/contacts");
 const HttpError = require("../util/HttpError");
 const { addSchema } = require("../schemas");
+const { tryCatchDecorator } = require("../decorators");
 
 const addContactCtrl = async (req, res, next) => {
   try {
@@ -14,5 +15,5 @@ const addContactCtrl = async (req, res, next) => {
 };
 
 module.exports = {
-  addContactCtrl,
+  addContactCtrl: tryCatchDecorator(addContactCtrl),
 };
