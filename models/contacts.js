@@ -37,7 +37,7 @@ async function updateContact(contactId, obj) {
   const data = await listContacts();
   const index = data.findIndex(({ id }) => id === contactId);
   if (index === -1) return null;
-  data[index] = { id: contactId, ...obj };
+  data[index] = { ...data[index], ...obj };
   writeJsonFile(data);
   return data[index];
 }
