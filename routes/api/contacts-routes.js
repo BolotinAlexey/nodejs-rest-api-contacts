@@ -51,6 +51,7 @@ router.delete("/:contactId", async (req, res, next) => {
       throw new HttpError(404, `Contact with id="${contactId}" don't find`);
     res.status(201).json(result);
   } catch (error) {
+    console.error(error);
     next(error);
   }
 });
