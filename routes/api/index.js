@@ -1,5 +1,1 @@
-const contactsRoutes = require("./contacts-routes");
-
-module.exports = {
-  contactsRoutes,
-};
+module.exports = require("./contacts-routes");

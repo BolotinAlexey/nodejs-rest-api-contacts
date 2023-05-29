@@ -26,6 +26,7 @@
     "eslint-plugin-promise": "5.2.0",
     "nodemon": "2.0.15"
   },
+  "author": "Oleksii Bolotin",
   "repository": {
     "type": "git",
     "url": "git+https://bolotinalexey.github.io/nodejs-hw-rest-api.git"
