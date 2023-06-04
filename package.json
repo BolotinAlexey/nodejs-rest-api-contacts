@@ -2,6 +2,9 @@
   "name": "node-rest-api",
   "homepage": "https://bolotinalexey.github.io/nodejs-hw-rest-api/",
   "version": "0.0.0",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "private": true,
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./server.js",
