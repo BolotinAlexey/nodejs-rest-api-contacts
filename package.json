@@ -1,6 +1,6 @@
 {
   "name": "node-rest-api",
-  "homepage": "https://bolotinalexey.github.io/nodejs-hw-rest-api/",
+  "homepage": "https://bolotinalexey.github.io/nodejs-rest-api-contacts.git/",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -29,6 +29,6 @@
   "author": "Oleksii Bolotin",
   "repository": {
     "type": "git",
-    "url": "git+https://bolotinalexey.github.io/nodejs-hw-rest-api.git"
+    "url": "git+https://bolotinalexey.github.io/nodejs-rest-api-contacts.git"
   }
 }
