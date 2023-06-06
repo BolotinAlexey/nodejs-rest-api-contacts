@@ -1,4 +1,4 @@
-const Contact = require("../models/contacts");
+const { Contact } = require("../models/contacts");
 const { tryCatchDecorator } = require("../decorators");
 
 const getContactsCtrl = async (req, res) => {
