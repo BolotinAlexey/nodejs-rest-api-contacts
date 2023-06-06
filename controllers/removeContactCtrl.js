@@ -1,11 +1,11 @@
-const api = require("../models/contacts");
-const HttpError = require("../util/HttpError");
+const Contact = require("../models/contacts");
+const { HttpError } = require("../util");
 const { tryCatchDecorator } = require("../decorators");
 
 const removeContactCtrl = async (req, res, next) => {
   try {
     const { contactId } = req.params;
-    const result = await api.removeContact(contactId);
+    const result = await Contact.findByIdAndDelete(contactId);
     if (!result) throw new HttpError(404);
     res.json({ message: "contact deleted" });
   } catch (error) {
