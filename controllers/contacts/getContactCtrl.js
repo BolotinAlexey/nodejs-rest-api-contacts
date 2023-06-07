@@ -1,6 +1,6 @@
-const { Contact } = require("../models/contacts");
-const { HttpError } = require("../util");
-const { tryCatchDecorator } = require("../decorators");
+const { Contact } = require("../../models");
+const { HttpError } = require("../../util");
+const { tryCatchDecorator } = require("../../decorators");
 
 const getContactCtrl = async (req, res, next) => {
   try {

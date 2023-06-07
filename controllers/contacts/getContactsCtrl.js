@@ -1,5 +1,5 @@
-const { Contact } = require("../models/contacts");
-const { tryCatchDecorator } = require("../decorators");
+const { Contact } = require("../../models");
+const { tryCatchDecorator } = require("../../decorators");
 
 const getContactsCtrl = async (req, res) => {
   const data = await Contact.find();
