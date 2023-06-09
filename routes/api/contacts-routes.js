@@ -1,7 +1,6 @@
 const express = require("express");
 const contactsRouter = express.Router();
 const ctrl = require("../../controllers/contacts");
-// const auth = require("../../controllers/auth");
 const { isValidId } = require("../../middlewares");
 
 contactsRouter.get("/", ctrl.getContactsCtrl);
