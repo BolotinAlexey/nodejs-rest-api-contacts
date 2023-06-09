@@ -7,8 +7,8 @@ const { schemaRegister } = require("../../schemas");
 const { salt } = require("../../constants");
 
 const signUp = async ({ body }, res) => {
-  const { err } = schemaRegister.validate(body);
-  if (err) throw new HttpError(400, err.message);
+  const { error } = schemaRegister.validate(body);
+  if (error) throw new HttpError(400, error.message);
 
   let { email, password } = body;
 
