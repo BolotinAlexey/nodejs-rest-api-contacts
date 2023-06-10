@@ -3,13 +3,17 @@ const User = require("../models/user");
 const { HttpError } = require("../util");
 const { JWT_KEY } = process.env;
 
-const authenticate = async ({ headers: { authorization = "" } }, res, next) => {
+const authenticate = async (req, res, next) => {
+  const {
+    headers: { authorization = "" },
+  } = req;
   const [bearer, token] = authorization.split(" ");
   if (bearer !== "Bearer") next(new HttpError(401));
   try {
     const { id } = jwt.verify(token, JWT_KEY);
     const user = await User.findById(id);
-    if (!user) next(new HttpError(401));
+    if (!user || !user.token) next(new HttpError(401));
+    req.user = user;
   } catch {
     next(new HttpError(401));
   }

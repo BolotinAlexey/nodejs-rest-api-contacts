@@ -2,7 +2,9 @@ const { Contact } = require("../../models");
 const { tryCatchDecorator } = require("../../decorators");
 
 const getContactsCtrl = async (req, res) => {
-  const data = await Contact.find();
+  const { _id: owner } = req.user;
+  console.log(owner);
+  const data = await Contact.find({ owner });
   res.json(data);
 };
 

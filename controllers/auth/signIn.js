@@ -20,6 +20,8 @@ const signIn = async ({ body }, res) => {
     id: user.id,
   };
   const token = jwt.sign(payload, JWT_KEY, { expiresIn: "24h" });
+  await User.findByIdAndUpdate(user.id, { token });
+
   res.json(token);
 };
 

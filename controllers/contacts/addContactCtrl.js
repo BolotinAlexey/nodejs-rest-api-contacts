@@ -6,7 +6,9 @@ const { tryCatchDecorator } = require("../../decorators");
 const addContactCtrl = async (req, res, next) => {
   const { error } = addSchema.validate(req.body);
   if (error) throw new HttpError(400, error.message);
-  const result = await Contact.create(req.body);
+  const { _id: owner } = req.user;
+  console.log(owner);
+  const result = await Contact.create({ ...req.body, owner });
   res.json(result);
 };
 

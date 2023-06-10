@@ -13,10 +13,6 @@ const userSchema = new Schema(
       type: String,
       default: null,
     },
-    // name: {
-    //   type: String,
-    //   required: [true, "Set name for signup"],
-    // },
     email: {
       type: String,
       requred: [true, "Set email for signup"],

@@ -16,7 +16,7 @@ const signUp = async ({ body }, res) => {
   if (user) throw new HttpError(409, "Email in use");
   password = await bcrypt.hash(password, salt);
   const newUser = await User.create({ ...body, password });
-  res.json(newUser);
+  res.json(newUser).status(201);
 };
 
 module.exports = signUp;
