@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
 const { User } = require("../../models");
 const { HttpError } = require("../../util");
@@ -15,8 +14,8 @@ const signUp = async ({ body }, res) => {
   const user = await User.findOne({ email });
   if (user) throw new HttpError(409, "Email in use");
   password = await bcrypt.hash(password, salt);
-  const newUser = await User.create({ ...body, password });
-  res.json(newUser).status(201);
+  const {subscription} = await User.create({ ...body, password });
+  res.json({email,subscription}).status(201);
 };
 
 module.exports = signUp;

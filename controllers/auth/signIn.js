@@ -11,7 +11,7 @@ const signIn = async ({ body }, res) => {
   const { error } = schemaLogin.validate(body);
   if (error) throw new HttpError(400, error.message);
   const { email, password } = body;
-  const user = await User.findOne({ email });
+  let user = await User.findOne({ email });
   if (!user || !bcrypt.compareSync(password, user.password)) {
     throw new HttpError(401, "Email or password is wrong");
   }
@@ -21,8 +21,8 @@ const signIn = async ({ body }, res) => {
   };
   const token = jwt.sign(payload, JWT_KEY, { expiresIn: "24h" });
   await User.findByIdAndUpdate(user.id, { token });
-
-  res.json(token);
+  user = { email, subscription: user.subscription }
+  res.json({token,user}).status(200);
 };
 
 module.exports = signIn;

@@ -1,6 +1,5 @@
-const getCurrent = ({ user }, res) => {
-  const { gmail, subscription } = user;
-  res.json({ gmail, subscription });
+const getCurrent = ({ user:{ email, subscription } }, res) => {
+  res.json({ email, subscription });
 };
 
 module.exports = getCurrent;
