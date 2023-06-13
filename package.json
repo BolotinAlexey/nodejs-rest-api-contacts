@@ -37,5 +37,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://bolotinalexey.github.io/nodejs-rest-api-contacts.git "
+
   }
 }
