@@ -1,6 +1,6 @@
 {
   "name": "node-rest-api",
-  "homepage": "https://bolotinalexey.github.io/nodejs-rest-api-contacts.git/",
+  "homepage": "https://bolotinalexey.github.io/nodejs-rest-api-contacts.git ",
   "version": "0.0.0",
   "engines": {
     "node": ">=16.0.0"
@@ -13,11 +13,13 @@
     "lint:fix": "eslint --fix **/*.js"
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "cors": "2.8.5",
     "cross-env": "7.0.3",
     "dotenv": "^16.1.4",
     "express": "4.17.1",
     "joi": "^17.9.2",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.2",
     "morgan": "1.10.0",
     "nanoid": "^3.3.4"
@@ -34,6 +36,7 @@
   "author": "Oleksii Bolotin",
   "repository": {
     "type": "git",
-    "url": "git+https://bolotinalexey.github.io/nodejs-rest-api-contacts.git"
+    "url": "git+https://bolotinalexey.github.io/nodejs-rest-api-contacts.git "
+
   }
 }
