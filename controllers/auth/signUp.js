@@ -16,8 +16,8 @@ const signUp = async ({ body }, res) => {
   if (user) throw new HttpError(409, "Email in use");
   password = await bcrypt.hash(password, salt);
 
-const avatarUrl=gravatar.url(email)
-  const {subscription} = await User.create({ ...body, password,avatarUrl });
+const avatarURL=gravatar.url(email)
+  const {subscription} = await User.create({ ...body, password,avatarURL });
   res.json({email,subscription}).status(201);
 };
 

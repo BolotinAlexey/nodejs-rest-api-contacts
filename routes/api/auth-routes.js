@@ -8,11 +8,11 @@ const {
   addAvatarCtrl
 } = require("../../controllers/auth");
 
-const { authenticate } = require("../../middlewares");
+const { authenticate,upload } = require("../../middlewares");
 
 authRouter.post("/register", signUp);
 authRouter.post("/signin", signIn);
 authRouter.post("/logout", authenticate, logOut);
 authRouter.get("/current", authenticate, getCurrent);
-authRouter.patch("/avatars",authenticate,addAvatarCtrl)
+authRouter.patch("/avatars",upload.single('avatar'),authenticate,addAvatarCtrl)
 module.exports = authRouter;
