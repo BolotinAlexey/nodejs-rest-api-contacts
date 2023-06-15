@@ -11,5 +11,5 @@ module.exports = {
   getContactsCtrl,
   removeContactCtrl,
   updateContactCtrl,
-  updateStatusContactCtrl,
+  updateStatusContactCtrl, 
 };
