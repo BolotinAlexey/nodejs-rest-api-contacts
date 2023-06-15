@@ -24,7 +24,10 @@ const userSchema = new Schema(
       required: [true, "Set password for signup"],
       minlength: minlengthPassword,
     },
+    avatarURL: String,
+  
   },
+
   { versionKey: false, timestamps: true }
 );
 

@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const gravatar=require("gravatar")
 
 const { User } = require("../../models");
 const { HttpError } = require("../../util");
@@ -14,7 +15,9 @@ const signUp = async ({ body }, res) => {
   const user = await User.findOne({ email });
   if (user) throw new HttpError(409, "Email in use");
   password = await bcrypt.hash(password, salt);
-  const {subscription} = await User.create({ ...body, password });
+
+const avatarUrl=gravatar.url(email)
+  const {subscription} = await User.create({ ...body, password,avatarUrl });
   res.json({email,subscription}).status(201);
 };
 
