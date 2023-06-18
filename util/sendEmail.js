@@ -1,6 +1,6 @@
 const sgMail = require("@sendgrid/mail");
 require("dotenv").config()
-const MAIL_FROM = require("../constants")
+const {MAIL_FROM} = require("../constants")
 
 
 const sendMail = async (data) => {
