@@ -3,10 +3,11 @@ const minlengthPassword = 5;
 
 const subscribtion = ["starter", "pro", "business"];
 const salt = 10;
+const MAIL_FROM="oleksiibolotin@gmail.com"
 
 module.exports = {
   emailRegexp,
   minlengthPassword,
   subscribtion,
-  salt,
+  salt,MAIL_FROM
 };
