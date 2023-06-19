@@ -1,11 +1,14 @@
 const { User } = require("../../models");
+const { schemaEmail } = require("../../schemas");
 const { HttpError, sendEmail } = require("../../util");
 require("dotenv").config();
 
 const { BASE_URL } = process.env;
 
-const repeatSendEmail = async (req, res) => {
-    const { email } = req.body;
+const repeatSendEmail = async ({body}, res) => {
+    const { error } = schemaEmail.validate(body)
+    if (error) throw new HttpError(400,error.message)
+    const { email } = body;
     if (!email) {
         throw new HttpError(400,"missing required field email")
     }
