@@ -6,7 +6,6 @@ const {
 } = require("../constants");
 
 const schemaRegister = Joi.object({
-  // name: Joi.string().required(),
   email: Joi.string().required().pattern(emailRegexp),
   password: Joi.string().required().min(minlengthPassword),
   subscription: Joi.string().allow(...subscribtion),

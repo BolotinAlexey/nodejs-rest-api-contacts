@@ -4,6 +4,7 @@ const signIn = require("./signIn");
 const signUp = require("./signUp");
 const verifyEmail = require("./verifyEmail");
 const getCurrent = require("./getCurrent");
+const repeatSendEmail = require("./repeatSendEmail");
 const  addAvatarCtrl = require("./addAvatarCtrl");
 
 module.exports = {
@@ -11,5 +12,6 @@ module.exports = {
   signIn: tryCatchDecorator(signIn),
   signUp: tryCatchDecorator(signUp),
   getCurrent: tryCatchDecorator(getCurrent), addAvatarCtrl: tryCatchDecorator(addAvatarCtrl),
-  verifyEmail:tryCatchDecorator(verifyEmail)
+  verifyEmail:tryCatchDecorator(verifyEmail),
+  repeatSendEmail:tryCatchDecorator(repeatSendEmail)
 };
