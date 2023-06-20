@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const { HttpError } = require("../../util");
 const { schemaLogin } = require("../../schemas");
 const jwt = require("jsonwebtoken");
