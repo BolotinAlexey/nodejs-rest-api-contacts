@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const { HttpError } = require("../../util");
 const { schemaLogin } = require("../../schemas");
 const jwt = require("jsonwebtoken");
@@ -10,11 +10,14 @@ const { User } = require("../../models");
 const signIn = async ({ body }, res) => {
   const { error } = schemaLogin.validate(body);
   if (error) throw new HttpError(400, error.message);
-  const { email, password } = body;
+  const { email, password} = body;
   let user = await User.findOne({ email });
+
   if (!user || !bcrypt.compareSync(password, user.password)) {
     throw new HttpError(401, "Email or password is wrong");
   }
+  if (!user.verify) {
+    throw new HttpError(401, "Email is not verified")}
 
   const payload = {
     id: user.id,
