@@ -19,19 +19,20 @@
 
 ## Routes:
 
-- ### Contacts   *(The headers must include the Authorization: Bearer {{token}})*
-- **GET /api/contacts**
-- **GET /api/contacts:id**
-- **POST /api/contacts**   body:{name, email, phone}
-- **DELETE /api/contacts/:id**   no body
-- **PUT /api/contacts/:id**   body:{name or/and email or/and phone}
-- **PATCH /api/contacts/:contactId/favorite**   body:{favorite:true or false(default)}
+ ### Contacts   *(The headers must include the Authorization: Bearer {{token}})*
+>- **GET /api/contacts**
+>- **GET /api/contacts:id**
+>- **POST /api/contacts**   body:{name, email, phone}
+>- **DELETE /api/contacts/:id**   no body
+>- **PUT /api/contacts/:id**   body:{name or/and email or/and phone}
+>- **PATCH /api/contacts/:contactId/favorite**   body:{favorite:true or false(default)}
 
-- ### Authorization
-- **POST api/auth/register**   body:{email,password}
-- **POST api/auth/signin**  body:{email,password} `Must have verify email`
-- **POST api/auth/logout**   body:{id}  *The headers must include the Authorization: Bearer {{token}}*
-- **GET api/auth/current**   *(The headers must include the Authorization: Bearer {{token}})*
-- **PATCH api/auth/avatars**  body must have form-data with the field 'avatar'  *The headers must include the Authorization: Bearer {{token}}*
-- **GET api/auth/verify/:verificationToken** 
-- **POST api/auth/verify/**   body:{email}.  It is performed when requesting a resending verificationToken  
+
+ ### Authorization
+>- **POST api/auth/register**   body:{email,password}
+>- **POST api/auth/signin**  body:{email,password} `Must have verify email`
+>- **POST api/auth/logout**   body:{id}  *The headers must include the Authorization: Bearer {{token}}*
+>- **GET api/auth/current**   *(The headers must include the Authorization: Bearer {{token}})*
+>- **PATCH api/auth/avatars**  body must have form-data with the field 'avatar'  *The headers must include the Authorization: Bearer {{token}}*
+>- **GET api/auth/verify/:verificationToken** 
+>- **POST api/auth/verify/**   body:{email}.  It is performed when requesting a resending verificationToken  
